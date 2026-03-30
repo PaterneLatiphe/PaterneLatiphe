@@ -1,21 +1,36 @@
 👋 Salut, je suis Relwende Paterne Latiphe KABORE
 
-Développeur en devenir et philosophe de formation, je construis des projets qui allient pragmatisme, technologie et réflexion critique.  
+Enseignant de Philosophie le jour, Vibe Coder la nuit, je construis des projets qui allient pragmatisme, technologie et réflexion critique.  
 Mon approche : apprendre, expérimenter, améliorer — toujours avec une touche de curiosité et d’IA.
 
 ---
 
- 💻 Compétences & Vibe
+💻 Compétences & Vibe
 
-- Langages : C# (mais ouvert à tout, vibe coder 😎)  
-- Outils : Git, Visual Studio, VS Code  
-- Intérêts : IA, développement logiciel, technologie appliquée
+**Langages / Dev :**  
+- C# (projet Vigie)  
+- Python (scripts simples, IA expérimentale)  
+- HTML / CSS (bases pour pages web)
+
+**Outils / environnement :**  
+- Git / GitHub (gestion de code et versioning)  
+- Visual Studio / VS Code  
+- Terminal / ligne de commande
+
+**Concepts / soft skills :**  
+- Logique de programmation  
+- Résolution de problèmes / pragmatisme  
+- Apprentissage autonome  
+- Esprit critique et réflexion (philosophie appliquée au code 😎)
+
+**Intérêts :**  
+- IA, développement logiciel, technologie appliquée
 
 ---
 
- 🚀 Projets en cours
+🚀 Projets en cours
 
-- Vigie : logiciel de gestion d’établissement scolaire (en cours)  
+- **Vigie** : logiciel de gestion d’établissement scolaire (en cours)  
 - Projets personnels d’expérimentation en C# et Python  
 
 > Tous mes projets sont des terrains d’apprentissage et d’innovation.
@@ -35,10 +50,7 @@ Mon parcours « philosophie → code » me permet de réfléchir autant à la lo
 
 ---
 
- 📫 Me contacter
+📫 Me contacter
 
 - GitHub : [PaterneLatiphe](https://github.com/PaterneLatiphe)  
 - LinkedIn / Mail : Kaborepaterne26@gmail.com
-
----
-
