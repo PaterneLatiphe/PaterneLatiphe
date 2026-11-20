@@ -1,6 +1,6 @@
 👋 Salut, je suis Relwende Paterne Latiphe KABORE
 
-Enseignant de philosophie le jour, développeur la nuit. Je construis des outils pragmatiques, testables et-utiles, avec une préférence marquée pour le **hors ligne** et les contextes où la connexion ne peut pas être supposée.
+Enseignant de philosophie le jour, développeur la nuit. Je construis des outils pragmatiques, testables et utiles, avec une préférence marquée pour le **hors ligne** et les contextes où la connexion ne peut pas être supposée.
 
 📍 Ouagadougou, Burkina Faso · [GitHub](https://github.com/PaterneLatiphe) · kaborepaterne26@gmail.com
 
@@ -47,7 +47,7 @@ Application de suivi des personnes accompagnées par **ACSF-AFRIQUE SARL**, enti
 - Caisse multi-guichets, recouvrement, remises et exonérations.
 - Paie SYSCOHADA : CNSS, AMU, IUTS, FSP, TPA.
 - Archivage et continuité de service sans connexion.
-- Verification : **82/82 tests** ; simulation de charge **2 080 élèves × 52 classes**.
+- Vérification : **82/82 tests** ; simulation de charge **2 080 élèves × 52 classes**.
 
 C’est la concrétisation du projet « Vigie » évoqué dans la version précédente de ce README.
 
