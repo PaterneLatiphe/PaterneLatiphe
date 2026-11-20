@@ -18,15 +18,17 @@ Enseignant de philosophie le jour, développeur la nuit. Je construis des outils
 
 ## 🚀 Projets récents
 
-| Projet | Statut | Dépôt | Stack |
+| Projet | Statut | Lien public | Stack |
 | --- | --- | --- | --- |
-| **ACSF Desktop** | en cours · privé | [acsf-desktop](https://github.com/PaterneLatiphe/acsf-desktop) | Electron, React, TypeScript, SQLite |
-| **SIRANIN** | en cours · privé | [siranin](https://github.com/PaterneLatiphe/siranin) | Electron, React, TypeScript, SQLite |
-| **ProfIA BF** | en ligne · privé | [MonProf](https://github.com/PaterneLatiphe/MonProf) | React, Vite, Tailwind, PWA, Groq |
+| **ACSF Desktop** | en cours · privé | démo sur demande | Electron, React, TypeScript, SQLite |
+| **SIRANIN** | en cours · privé | démo sur demande | Electron, React, TypeScript, SQLite |
+| **ProfIA BF** | en ligne · privé | [démo Vercel](https://mon-prof-five.vercel.app) | React, Vite, Tailwind, PWA, Groq |
 | **BiblioFaso** | amorce · public | [BiblioFaso](https://github.com/PaterneLatiphe/BiblioFaso) | GitHub Actions (build APK) |
 | **Snake-Evolved** | loisir · public | [Snake-Evolved](https://github.com/PaterneLatiphe/Snake-Evolved) | Jeu Snake |
 
-> Les dépôts marqués « privé » ne sont pas publics : démo et détails sur demande.
+> Les projets marqués « privé » n’ont pas de dépôt public : démo et détails sur demande.
+
+Portfolio en ligne : <https://paternelatiphe.github.io/PaterneLatiphe/>
 
 ### ACSF Desktop — suivi des personnes accompagnées
 
