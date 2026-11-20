@@ -3,28 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Étoile introuvable — PaterneLatiphe</title>
-  <meta name="robots" content="noindex" />
+
+  <title>Page introuvable — PaterneLatiphe World</title>
+  <meta name="description" content="Page introuvable du portfolio de Relwende Paterne Latiphe KABORE (PaterneLatiphe), développeur et enseignant de philosophie à Ouagadougou." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://paternelatiphe.github.io/PaterneLatiphe/" />
+  <meta name="theme-color" content="#070b14" />
+  <link rel="me" href="https://github.com/PaterneLatiphe" />
+  <link rel="me" href="mailto:kaborepaterne26@gmail.com" />
   <link rel="icon" type="image/svg+xml" href="/PaterneLatiphe/favicon.svg" />
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://avatars.githubusercontent.com https://github.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&amp;family=Inter:wght@400..700&amp;family=JetBrains+Mono:wght@400..500&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/PaterneLatiphe/assets/css/style.css" />
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" integrity="sha384-0k1dj5tm+KUH/4vkNk/i90XsjDA8Ltmt+ybcrFoH4t0dgv/WZsPpVBnkhcroX8UL" crossorigin="anonymous"></script>
+  <script defer src="/PaterneLatiphe/assets/js/main.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12zM12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></symbol>
+  </svg>
+
   <div class="cosmos" aria-hidden="true">
+    <div class="cosmos__nebula cosmos__nebula--violet"></div>
+    <div class="cosmos__nebula cosmos__nebula--cyan"></div>
     <div class="cosmos__band"></div>
+    <canvas class="cosmos__canvas" id="particle-field"></canvas>
     <div class="stars stars--far"></div>
     <div class="stars stars--near"></div>
+    <div class="comet comet--one"></div>
+    <div class="comet comet--two"></div>
+    <div class="comet comet--three"></div>
     <div class="grain"></div>
   </div>
 
-  <main class="container section" style="display:grid;place-items:center;min-height:80vh;text-align:center">
-    <div>
-      <p class="kicker" style="justify-content:center">Signal perdu · 404</p>
-      <h1 style="font-size:clamp(3rem,10vw,7rem);color:var(--gold)">404</h1>
-      <p class="lead" style="margin-inline:auto">Cette étoile n’est pas sur notre carte. Revenez sur la trajectoire principale.</p>
-      <p style="margin-top:32px">
-        <a class="btn btn--primary" href="/PaterneLatiphe/">Retour au portfolio</a>
-      </p>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="/PaterneLatiphe/" aria-label="PL PaterneLatiphe — accueil du portfolio">
+        <span class="brand__mark">PL</span>
+        <span>PaterneLatiphe</span>
+      </a>
+      <nav class="site-nav" aria-label="Navigation de secours">
+        <a class="nav-cta" href="/PaterneLatiphe/">Retour au portfolio <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </nav>
     </div>
+  </header>
+
+  <main id="contenu">
+    <section class="container hero" style="grid-template-columns:1fr" aria-labelledby="erreur-title">
+      <div class="hero__copy reveal" style="--delay: 40ms">
+        <p class="hero__eyebrow"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Ouagadougou · <span>12°22’N — 1°31’W</span></p>
+        <p class="kicker">Page introuvable · 404</p>
+        <h1 id="erreur-title" style="font-size:clamp(4rem,12vw,8rem);line-height:.9;color:var(--gold)">404</h1>
+        <h2 style="margin-top:24px">Cette page n’existe pas.</h2>
+        <p class="lead">Le lien est peut-être ancien, ou l’adresse a changé. Revenez à l’accueil du portfolio de <strong style="color:var(--gold);font-weight:600">PaterneLatiphe</strong>.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/PaterneLatiphe/"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg> Retour au portfolio</a>
+          <a class="btn btn--ghost" href="mailto:kaborepaterne26@gmail.com?subject=Lien%20mort%20sur%20le%20portfolio"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Signaler ce lien</a>
+        </div>
+        <p class="hero__coordinates"><span><b>404</b> · hors carte</span><span><b>PL</b> · PaterneLatiphe</span></p>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© 2026 Relwende Paterne Latiphe KABORE · Ouagadougou, Burkina Faso.</p>
+      <p>Page simple, faite avec du CSS et <a href="https://github.com/PaterneLatiphe/PaterneLatiphe" target="_blank" rel="noopener noreferrer">ce dépôt</a>.</p>
+    </div>
+  </footer>
 </body>
 </html>

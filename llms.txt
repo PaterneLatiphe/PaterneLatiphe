@@ -1,0 +1,40 @@
+# Relwende Paterne Latiphe KABORE — PaterneLatiphe
+
+> Prof de philosophie et développeur à Ouagadougou, Burkina Faso. Il fait des applications simples, testées, qui marchent sans Internet. Portfolio : https://paternelatiphe.github.io/PaterneLatiphe/
+
+URL canonique : https://paternelatiphe.github.io/PaterneLatiphe/
+Langue : français (fr-FR)
+
+## Identité
+
+- Nom complet : Relwende Paterne Latiphe KABORE
+- Pseudo / marque publique : PaterneLatiphe (monogramme : PL)
+- Titre du portfolio : PaterneLatiphe World
+- Métier : enseignant de philosophie et développeur
+- Localisation : Ouagadougou, Burkina Faso
+- E-mail public : kaborepaterne26@gmail.com
+- Profil GitHub : https://github.com/PaterneLatiphe
+- Dépôt source du portfolio : https://github.com/PaterneLatiphe/PaterneLatiphe
+
+## Résumé
+
+Relwende Paterne Latiphe KABORE, dit PaterneLatiphe, enseigne la philosophie le jour et développe le soir. Il travaille sur des outils pour les écoles, les bureaux et les postes Windows sans connexion fiable. Il observe d’abord l’usage, puis il écrit, teste et documente. SIRANIN veut dire « petit chemin » en dioula.
+
+## Compétences
+
+C#, JavaScript, TypeScript, PHP, Java, C++, Python, Electron, React, Vite, Tailwind CSS, SQL et SQLite embarqué, AG Grid, ExcelJS, exports Excel, PWA, API Groq, reconnaissance vocale, HTML/CSS, Git et GitHub, tests, documentation, accessibilité, VS Code et Visual Studio.
+
+## Projets
+
+- ACSF Desktop : logiciel de gestion pour le suivi des personnes accompagnées par ACSF-AFRIQUE SARL (dossiers, agenda à deux origines de rendez-vous, catalogue d’offres, rapports exportables en Excel). Electron, React, TypeScript, AG Grid et SQLite embarqué. Dépôt privé ; démo sur demande à kaborepaterne26@gmail.com.
+- SIRANIN : logiciel de gestion scolaire hors ligne pour un établissement privé du Burkina Faso (scolarité, notes et bulletins, caisse multi-guichets, recouvrement, paie SYSCOHADA). 82/82 tests et simulation de 2 080 élèves sur 52 classes. Dépôt privé ; démo sur demande.
+- ProfIA BF (MonProf) : PWA de révision pour le BEPC et le BAC avec leçons, flashcards, cartes mentales, quiz, tableau de bord et assistant IA (API Groq, reconnaissance vocale). Démo : https://mon-prof-five.vercel.app
+- BiblioFaso : amorce de projet public, README initial et workflow GitHub Actions de construction d’un APK ; périmètre fonctionnel à préciser. https://github.com/PaterneLatiphe/BiblioFaso
+- Snake-Evolved : jeu Snake simple, projet public de loisir. https://github.com/PaterneLatiphe/Snake-Evolved
+
+## Liens utiles
+
+- Portfolio (URL canonique) : https://paternelatiphe.github.io/PaterneLatiphe/
+- Contact : mailto:kaborepaterne26@gmail.com
+- GitHub : https://github.com/PaterneLatiphe
+- Démo ProfIA BF : https://mon-prof-five.vercel.app

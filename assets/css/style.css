@@ -15,9 +15,19 @@
   --cyan: #7fd8e8;
   --line: rgba(232, 200, 138, 0.14);
   --line-strong: rgba(232, 200, 138, 0.32);
+  /* One radius scale for every surface. */
+  --radius-sm: 6px;
+  --radius-md: 12px;
   --radius: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
   --shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.85);
   --glow: 0 0 0 1px rgba(232, 200, 138, 0.18), 0 18px 50px -22px rgba(232, 200, 138, 0.22);
+  /* One motion vocabulary: fast UI, slow surfaces, ambient drift. */
+  --t-fast: 0.25s;
+  --t-slow: 0.5s;
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-ambient: ease-in-out;
   --display: "Fraunces", Georgia, serif;
   --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
@@ -33,6 +43,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+  /* 3D rings can project past the viewport at some angles; clip without
+     turning html into a scroll container (which would break sticky). */
+  overflow-x: clip;
 }
 
 body {
@@ -44,13 +57,29 @@ body {
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip (not hidden) keeps the body from becoming a scroll container, so the
+     sticky header still tracks the viewport. */
+  overflow-x: clip;
 }
 
 img,
 svg {
   display: block;
   max-width: 100%;
+}
+
+/* Same mono stack as labels — never the generic browser monospace. */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  color: var(--gold);
+  background: rgba(19, 28, 46, 0.6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1px 5px;
 }
 
 a {
@@ -66,7 +95,6 @@ a {
 :focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 4px;
-  border-radius: 4px;
 }
 
 ::selection {
@@ -113,9 +141,9 @@ a {
   background: var(--gold);
   color: var(--night);
   font-weight: 700;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   transform: translateY(-160%);
-  transition: transform 0.25s ease;
+  transition: transform var(--t-fast) var(--ease-ui);
 }
 
 .skip-link:focus {
@@ -178,8 +206,8 @@ a {
   width: min(70vw, 860px);
   aspect-ratio: 1;
   border-radius: 50%;
-  filter: blur(44px);
-  will-change: transform;
+  /* Soft enough without a large blur layer; CSS animations are composited already. */
+  filter: blur(36px);
 }
 
 .cosmos__nebula--violet {
@@ -202,7 +230,6 @@ a {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   opacity: 0.85;
-  will-change: transform;
 }
 
 .stars--near {
@@ -239,7 +266,6 @@ a {
   width: 220px;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(232, 200, 138, 0.65), transparent);
-  filter: blur(0.3px);
   opacity: 0.5;
   transform: rotate(-24deg);
 }
@@ -288,7 +314,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid rgba(232, 200, 138, 0.1);
+  border-bottom: 1px solid var(--line);
   background: rgba(7, 11, 20, 0.72);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -336,23 +362,27 @@ a {
 
 .site-nav a {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  white-space: nowrap;
   font-size: 0.83rem;
   letter-spacing: 0.04em;
   color: var(--muted);
-  transition: color 0.25s ease;
+  transition: color var(--t-fast) var(--ease-ui);
 }
 
 .site-nav a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -6px;
+  bottom: 7px;
   width: 100%;
   height: 1px;
   background: var(--gold);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.3s ease;
+  transition: transform var(--t-fast) var(--ease-ui);
 }
 
 .site-nav a:hover,
@@ -372,10 +402,11 @@ a {
   gap: 8px;
   padding: 9px 16px;
   border: 1px solid var(--line-strong);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: var(--gold) !important;
   font-size: 0.8rem;
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  min-height: 44px;
+  transition: background var(--t-fast) var(--ease-ui), border-color var(--t-fast) var(--ease-ui), transform var(--t-fast) var(--ease-ui);
 }
 
 .nav-cta::after {
@@ -468,6 +499,7 @@ h3 {
   align-items: center;
   gap: clamp(40px, 6vw, 90px);
   min-height: calc(100vh - 76px);
+  min-height: calc(100svh - 76px);
   padding: clamp(72px, 9vw, 120px) 0 clamp(56px, 7vw, 90px);
 }
 
@@ -478,7 +510,7 @@ h3 {
   margin-bottom: 26px;
   padding: 8px 14px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: rgba(19, 28, 46, 0.5);
   font-family: var(--mono);
   font-size: 0.72rem;
@@ -491,9 +523,10 @@ h3 {
 }
 
 .hero h1 {
-  max-width: 12ch;
-  font-size: clamp(3.2rem, 7.2vw, 6.4rem);
-  line-height: 0.94;
+  max-width: 14ch;
+  /* Narrow desktop column: the 14-character wordmark must not spill into the orbit. */
+  font-size: clamp(2.9rem, 5.4vw, 4.9rem);
+  line-height: 0.98;
 }
 
 .hero h1 em {
@@ -535,10 +568,10 @@ h3 {
   gap: 10px;
   min-height: 48px;
   padding: 0 22px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.88rem;
   font-weight: 600;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  transition: transform var(--t-fast) var(--ease-ui), box-shadow var(--t-fast) var(--ease-ui), background var(--t-fast) var(--ease-ui), border-color var(--t-fast) var(--ease-ui);
 }
 
 .btn:hover {
@@ -595,7 +628,7 @@ h3 {
   perspective: 1100px;
   transform-style: preserve-3d;
   transform: rotateY(var(--px, 0deg)) rotateX(var(--py, 0deg));
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.4s var(--ease-ui);
 }
 
 .orbit-scene__halo {
@@ -609,8 +642,9 @@ h3 {
 .ring {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(232, 200, 138, 0.16);
+  border: 1px solid rgba(232, 200, 138, 0.1);
   border-radius: 50%;
+  box-shadow: 0 0 14px -8px rgba(232, 200, 138, 0.18);
   transform-style: preserve-3d;
   animation: ring-spin 46s linear infinite;
 }
@@ -619,14 +653,32 @@ h3 {
   content: "";
   position: absolute;
   inset: 8%;
-  border: 1px dashed rgba(168, 180, 200, 0.12);
+  border: 1px dashed rgba(168, 180, 200, 0.05);
   border-radius: 50%;
+}
+
+/* A faint light arc riding each orbit, so the path reads as a moving trail
+   instead of a fixed technical wire. Rotates with the ring. */
+.ring::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    transparent 0 62%,
+    rgba(232, 200, 138, 0.02) 72%,
+    rgba(232, 200, 138, 0.16) 84%,
+    rgba(255, 245, 220, 0.38) 90%,
+    rgba(232, 200, 138, 0.1) 95%,
+    transparent 100%);
+  -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px) 100%);
+  mask: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px) 100%);
+  pointer-events: none;
 }
 
 .ring--two {
   inset: 12%;
   animation-duration: 34s;
-  animation-direction: reverse;
   border-color: rgba(127, 216, 232, 0.14);
 }
 
@@ -636,81 +688,176 @@ h3 {
   border-color: rgba(109, 91, 208, 0.28);
 }
 
-/* Language planets: counter-rotate so each label stays upright while orbiting. */
-.ring__planet {
+/* Language moons: the wrapper owns orbit position + upright counter-rotation,
+   so each name always faces the reader. The inner body is just the sphere
+   surface — no axial spin. All three rings share ring-spin. */
+.ring__satellite {
+  --sat-size: 46px;
   position: absolute;
-  top: -14px;
+  top: 50%;
   left: 50%;
-  width: 96px;
-  margin-left: -48px;
-  padding: 6px 8px;
-  border: 1px solid rgba(232, 200, 138, 0.5);
-  border-radius: 999px;
-  background: rgba(13, 20, 36, 0.94);
-  box-shadow: 0 0 20px -4px rgba(232, 200, 138, 0.55), inset 0 1px 0 rgba(242, 240, 234, 0.14);
-  color: var(--gold);
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.045em;
-  text-align: center;
-  white-space: nowrap;
+  width: var(--sat-size);
+  height: var(--sat-size);
+  margin-left: calc(var(--sat-size) / -2);
+  margin-top: calc(var(--sat-size) / -2);
+  transform-style: preserve-3d;
   backface-visibility: hidden;
   animation: planet-upright 46s linear infinite;
 }
 
-.ring__planet--bottom {
-  top: auto;
-  bottom: -14px;
+/* Dark base stays visible while the lit face turns away: a moon in shadow,
+   shaded from the same upper-left light as the globe. */
+.ring__satellite::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(232, 200, 138, 0.2);
+  border-radius: 50%;
+  background: linear-gradient(126deg, rgba(232, 200, 138, 0.12), rgba(19, 28, 46, 0.9) 55%, var(--night) 96%);
+  box-shadow: 0 0 14px -6px rgba(232, 200, 138, 0.4);
 }
 
-.ring--two .ring__planet {
-  border-color: rgba(127, 216, 232, 0.5);
-  background: rgba(11, 26, 38, 0.94);
-  box-shadow: 0 0 20px -4px rgba(127, 216, 232, 0.5), inset 0 1px 0 rgba(242, 240, 234, 0.14);
-  color: var(--cyan);
-  animation-name: planet-upright-reverse;
+.ring__satellite__body {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 2px;
+  border: 1px solid rgba(232, 200, 138, 0.45);
+  border-radius: 50%;
+  background-image:
+    radial-gradient(circle at 27% 24%, rgba(255, 252, 242, 0.8) 0 4%, rgba(232, 200, 138, 0.24) 9%, transparent 18%),
+    radial-gradient(circle at 22% 62%, rgba(7, 11, 20, 0.5) 0 9%, transparent 11%),
+    radial-gradient(circle at 64% 68%, rgba(7, 11, 20, 0.42) 0 7%, transparent 9%),
+    radial-gradient(circle at 38% 34%, rgba(242, 240, 234, 0.14) 0 4%, transparent 6%),
+    linear-gradient(126deg, rgba(232, 200, 138, 0.48) 0%, rgba(19, 28, 46, 0.88) 54%, var(--night) 94%),
+    radial-gradient(circle at 32% 28%, #455570, #131c2e 62%, #050810 100%);
+  box-shadow:
+    0 0 14px -6px rgba(232, 200, 138, 0.5),
+    inset -5px -5px 10px rgba(2, 4, 10, 0.85),
+    inset 3px 3px 6px rgba(255, 245, 220, 0.2);
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 0;
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(255, 245, 220, 0.12);
+  backface-visibility: hidden;
+}
+
+/* Stagger the azimuths: each moon sits at a different point of its ring, so
+   the three orbits never stack their satellites on the same screen position. */
+.ring--one .ring__satellite { left: 100%; top: 50%; }
+.ring--one .ring__satellite--bottom { left: 0; top: 50%; }
+.ring--two .ring__satellite { left: 50%; top: 0; }
+.ring--two .ring__satellite--bottom { left: 50%; top: 100%; }
+.ring--three .ring__satellite { left: 100%; top: 50%; }
+.ring--three .ring__satellite--bottom { left: 0; top: 50%; }
+
+.ring--two .ring__satellite {
+  --sat-size: 42px;
   animation-duration: 34s;
 }
 
-.ring--three .ring__planet {
-  border-color: rgba(109, 91, 208, 0.6);
-  background: rgba(18, 17, 44, 0.94);
-  box-shadow: 0 0 20px -4px rgba(109, 91, 208, 0.6), inset 0 1px 0 rgba(242, 240, 234, 0.14);
-  color: #b9adff;
+.ring--two .ring__satellite__body {
+  border-color: rgba(127, 216, 232, 0.45);
+  background-image:
+    radial-gradient(circle at 27% 24%, rgba(242, 252, 255, 0.8) 0 4%, rgba(127, 216, 232, 0.24) 9%, transparent 18%),
+    radial-gradient(circle at 22% 62%, rgba(7, 11, 20, 0.5) 0 9%, transparent 11%),
+    radial-gradient(circle at 64% 68%, rgba(7, 11, 20, 0.42) 0 7%, transparent 9%),
+    radial-gradient(circle at 38% 34%, rgba(242, 240, 234, 0.14) 0 4%, transparent 6%),
+    linear-gradient(126deg, rgba(127, 216, 232, 0.46) 0%, rgba(11, 26, 38, 0.88) 54%, var(--night) 94%),
+    radial-gradient(circle at 32% 28%, #3d6472, #0b1a26 62%, #050810 100%);
+  box-shadow:
+    0 0 14px -6px rgba(127, 216, 232, 0.5),
+    inset -5px -5px 10px rgba(2, 4, 10, 0.85),
+    inset 3px 3px 6px rgba(242, 252, 255, 0.2);
+  color: var(--cyan);
+  font-size: 0.44rem;
+}
+
+.ring--three .ring__satellite {
+  --sat-size: 38px;
   animation-duration: 24s;
+}
+
+.ring--three .ring__satellite__body {
+  border-color: rgba(109, 91, 208, 0.55);
+  background-image:
+    radial-gradient(circle at 27% 24%, rgba(248, 244, 255, 0.8) 0 4%, rgba(109, 91, 208, 0.3) 9%, transparent 18%),
+    radial-gradient(circle at 22% 62%, rgba(7, 11, 20, 0.5) 0 9%, transparent 11%),
+    radial-gradient(circle at 64% 68%, rgba(7, 11, 20, 0.42) 0 7%, transparent 9%),
+    radial-gradient(circle at 38% 34%, rgba(242, 240, 234, 0.14) 0 4%, transparent 6%),
+    linear-gradient(126deg, rgba(109, 91, 208, 0.56) 0%, rgba(18, 17, 44, 0.88) 54%, var(--night) 94%),
+    radial-gradient(circle at 32% 28%, #4a4173, #12112c 62%, #050810 100%);
+  box-shadow:
+    0 0 14px -6px rgba(109, 91, 208, 0.5),
+    inset -5px -5px 10px rgba(2, 4, 10, 0.85),
+    inset 3px 3px 6px rgba(248, 244, 255, 0.2);
+  color: #b9adff;
+  font-size: 0.42rem;
 }
 
 .planet {
   position: absolute;
   inset: 34%;
-  display: grid;
-  place-items: center;
   border-radius: 50%;
+  /* One light source: tight specular upper-left, directional terminator,
+     deep night lower-right. The sphere must read as a solid body, not a glow. */
   background:
-    radial-gradient(circle at 32% 28%, rgba(242, 240, 234, 0.9), transparent 18%),
-    radial-gradient(circle at 38% 32%, #2b3d5f, #101a2d 62%, #070b14 100%);
-  border: 1px solid rgba(232, 200, 138, 0.4);
+    radial-gradient(circle at 29% 25%, rgba(255, 252, 242, 0.92) 0 3%, rgba(232, 200, 138, 0.32) 8%, transparent 17%),
+    radial-gradient(circle at 34% 30%, #465d80 0%, #2a3d5e 30%, #121d31 60%, #070b14 86%),
+    linear-gradient(126deg, transparent 36%, rgba(4, 7, 14, 0.42) 60%, rgba(3, 5, 11, 0.9) 100%);
+  border: 1px solid rgba(232, 200, 138, 0.22);
   box-shadow:
-    inset -18px -20px 40px rgba(0, 0, 0, 0.6),
-    0 0 0 10px rgba(232, 200, 138, 0.03),
-    0 0 70px -12px rgba(232, 200, 138, 0.35);
-  animation: float 7s ease-in-out infinite;
+    inset -14px -12px 26px rgba(2, 4, 10, 0.85),
+    inset 5px 5px 12px rgba(255, 245, 220, 0.14),
+    0 14px 30px -10px rgba(0, 0, 0, 0.75),
+    0 0 0 8px rgba(232, 200, 138, 0.025),
+    0 0 60px -10px rgba(232, 200, 138, 0.28);
+  animation: float 7s var(--ease-ambient) infinite;
   transform: translateZ(40px);
+  perspective: 700px;
   overflow: hidden;
 }
 
-/* The sphere itself turns: drifting continents + scrolling longitude lines. */
+/* Limb / rim light: a thin lit edge and a faint atmospheric crescent on the
+   night side. Clipped by the sphere's overflow, so it hugs the surface. */
+.planet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 76%, rgba(232, 200, 138, 0.3) 93%, transparent 100%),
+    radial-gradient(circle at 74% 78%, transparent 60%, rgba(127, 216, 232, 0.2) 82%, transparent 94%);
+  pointer-events: none;
+}
+
+/* Surface and label share one rotating frame: the wordmark really rides the globe. */
+.planet__body {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: globe-spin 18s linear infinite;
+}
+
 .planet__surface {
   position: absolute;
   inset: -1px;
   border-radius: 50%;
+  /* Irregular, soft surface patches instead of regular meridian stripes:
+     they give the rotating globe something to turn without looking like a grid. */
   background-image:
-    radial-gradient(ellipse 30% 44% at 24% 30%, rgba(127, 216, 232, 0.28), transparent 72%),
-    radial-gradient(ellipse 26% 38% at 74% 62%, rgba(109, 91, 208, 0.34), transparent 72%),
-    radial-gradient(ellipse 18% 30% at 52% 84%, rgba(232, 200, 138, 0.22), transparent 70%),
-    repeating-linear-gradient(90deg, transparent 0 25px, rgba(232, 200, 138, 0.1) 25px 26px);
-  background-size: 200% 100%, 200% 100%, 200% 100%, 52px 100%;
-  animation: globe-spin 18s linear infinite;
+    radial-gradient(ellipse 34% 24% at 27% 38%, rgba(127, 216, 232, 0.24), transparent 72%),
+    radial-gradient(ellipse 24% 30% at 68% 60%, rgba(109, 91, 208, 0.3), transparent 72%),
+    radial-gradient(ellipse 18% 28% at 46% 80%, rgba(232, 200, 138, 0.18), transparent 70%),
+    radial-gradient(ellipse 14% 10% at 58% 26%, rgba(242, 240, 234, 0.12), transparent 72%);
+  background-size: 100% 100%;
 }
 
 .planet::after {
@@ -718,20 +865,35 @@ h3 {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, transparent 18%, rgba(7, 11, 20, 0.42) 64%, rgba(7, 11, 20, 0.88) 100%);
+  /* Lighter vignette: keep the sphere's silhouette instead of drowning it. */
+  background: radial-gradient(circle at 32% 28%, transparent 26%, rgba(7, 11, 20, 0.26) 66%, rgba(7, 11, 20, 0.62) 100%);
   pointer-events: none;
 }
 
+/* Curved wordmark: the SVG sits inside .planet__body, so path and surface share
+   the same rotating 3D frame — the name rides the globe instead of floating over it. */
 .planet__label {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: translateZ(40px);
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+.planet__label text {
+  fill: rgba(232, 200, 138, 0.92);
   font-family: var(--display);
-  font-size: clamp(0.68rem, 1.7vw, 1rem);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--gold);
-  text-shadow: 0 2px 10px rgba(7, 11, 20, 0.95), 0 0 16px rgba(232, 200, 138, 0.5);
-  transform: translateZ(46px);
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  stroke: rgba(4, 7, 14, 0.72);
+  stroke-width: 1.2px;
+  paint-order: stroke fill;
+  /* Etched into the surface: dark groove below, a thin catch-light above. */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(255, 245, 220, 0.1);
 }
 
 .scene-label {
@@ -740,7 +902,7 @@ h3 {
   bottom: 12%;
   padding: 8px 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background: rgba(7, 11, 20, 0.72);
   font-family: var(--mono);
   font-size: 0.65rem;
@@ -800,7 +962,7 @@ h3 {
   align-items: start;
 }
 
-.about-copy p {
+.about-copy p:not(.kicker) {
   color: var(--muted);
   margin: 0 0 20px;
 }
@@ -870,10 +1032,9 @@ h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: linear-gradient(158deg, rgba(27, 39, 64, 0.78), rgba(13, 20, 36, 0.82));
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(242, 240, 234, 0.04);
   transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease, border-color 0.5s ease;
-  overflow: hidden;
+  transition: transform var(--t-slow) var(--ease-ui), box-shadow var(--t-slow) var(--ease-ui), border-color var(--t-slow) var(--ease-ui);
 }
 
 .project--featured {
@@ -884,9 +1045,10 @@ h3 {
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   background: radial-gradient(circle at 85% 0%, rgba(232, 200, 138, 0.1), transparent 55%);
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity var(--t-slow) var(--ease-ui);
   pointer-events: none;
 }
 
@@ -917,7 +1079,7 @@ h3 {
   width: 44px;
   height: 44px;
   border: 1px solid var(--line-strong);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   color: var(--gold);
   background: rgba(232, 200, 138, 0.06);
 }
@@ -945,7 +1107,7 @@ h3 {
   margin: 12px 0 14px;
   padding: 5px 10px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: var(--cyan);
   font-family: var(--mono);
   font-size: 0.66rem;
@@ -958,11 +1120,16 @@ h3 {
   color: var(--gold);
 }
 
-.project p {
+.project > p:not(.project__badge) {
   margin: 0;
   color: var(--muted);
   font-size: 0.94rem;
   transform: translateZ(18px);
+}
+
+.project code {
+  font-size: 0.8em;
+  padding: 0 4px;
 }
 
 .project__tags {
@@ -976,7 +1143,7 @@ h3 {
 .project__tags span {
   padding: 4px 9px;
   border: 1px solid rgba(168, 180, 200, 0.14);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   color: var(--muted);
   font-family: var(--mono);
   font-size: 0.66rem;
@@ -995,7 +1162,7 @@ h3 {
 }
 
 .project__link .icon {
-  transition: transform 0.25s ease;
+  transition: transform var(--t-fast) var(--ease-ui);
 }
 
 .project__link:hover .icon {
@@ -1022,7 +1189,6 @@ h3 {
 
 .stack__track {
   display: flex;
-  gap: 12px;
   min-width: max-content;
   animation: marquee 34s linear infinite;
 }
@@ -1032,17 +1198,21 @@ h3 {
   animation-duration: 42s;
 }
 
-.stack__row:hover .stack__track {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .stack__row:hover .stack__track {
+    animation-play-state: paused;
+  }
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 9px;
+  /* Margin instead of flex gap: the duplicated track loops without a seam jump. */
+  margin-right: 12px;
   padding: 10px 16px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: rgba(19, 28, 46, 0.6);
   color: var(--muted);
   font-family: var(--mono);
@@ -1113,7 +1283,7 @@ h3 {
   position: relative;
   padding: clamp(38px, 7vw, 80px);
   border: 1px solid var(--line-strong);
-  border-radius: 28px;
+  border-radius: var(--radius-xl);
   background:
     radial-gradient(circle at 80% 10%, rgba(232, 200, 138, 0.12), transparent 45%),
     radial-gradient(circle at 10% 90%, rgba(109, 91, 208, 0.16), transparent 50%),
@@ -1173,10 +1343,14 @@ h3 {
 }
 
 .site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
   color: var(--gold);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: rgba(232, 200, 138, 0.55);
+  transition: text-decoration-color var(--t-fast) var(--ease-ui);
 }
 
 .site-footer a:hover {
@@ -1197,7 +1371,7 @@ h3 {
 }
 
 .has-js .reveal.in-view {
-  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay, 0ms) forwards;
+  animation: rise 0.8s var(--ease-ui) var(--delay, 0ms) forwards;
 }
 
 .is-revealed {
@@ -1245,14 +1419,10 @@ h3 {
   to { transform: rotateZ(-360deg) rotateX(-68deg); }
 }
 
-@keyframes planet-upright-reverse {
-  from { transform: rotateZ(0deg) rotateX(-68deg); }
-  to { transform: rotateZ(360deg) rotateX(-68deg); }
-}
-
+/* One transform-driven turn for surface + curved wordmark, instead of a background-position repaint. */
 @keyframes globe-spin {
-  from { background-position: 0 0, 0 0, 0 0, 0 0; }
-  to { background-position: -200% 0, -200% 0, -200% 0, -52px 0; }
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
 
 @keyframes float {
@@ -1282,6 +1452,8 @@ h3 {
 
   .hero h1 {
     max-width: 14ch;
+    /* Full width here, so the wordmark can breathe again. */
+    font-size: clamp(3.2rem, 7.2vw, 6.4rem);
   }
 
   .orbit-scene {
@@ -1294,9 +1466,17 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .project,
   .project--featured {
-    grid-column: span 3;
+    grid-column: auto;
+  }
+
+  .project:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .stats {
@@ -1325,6 +1505,10 @@ h3 {
     display: none;
   }
 
+  .nav-cta {
+    padding-inline: 14px;
+  }
+
   .hero__coordinates {
     flex-wrap: wrap;
     gap: 10px 22px;
@@ -1335,7 +1519,8 @@ h3 {
   }
 
   .project,
-  .project--featured {
+  .project--featured,
+  .project:last-child:nth-child(odd) {
     grid-column: 1 / -1;
     min-height: 0;
   }
@@ -1348,7 +1533,15 @@ h3 {
 
 @media (max-width: 420px) {
   .hero h1 {
-    font-size: clamp(2.8rem, 14vw, 3.6rem);
+    font-size: clamp(2.3rem, 12vw, 3rem);
+  }
+
+  .brand > span:last-child {
+    display: none;
+  }
+
+  .site-header__inner {
+    gap: 12px;
   }
 
   .stats {
@@ -1365,7 +1558,30 @@ h3 {
   }
 
   .orbit-scene {
-    max-width: 320px;
+    max-width: 280px;
+  }
+
+  .ring__satellite {
+    --sat-size: 42px;
+  }
+
+  .ring__satellite__body {
+    font-size: 0.42rem;
+  }
+
+  .ring--two .ring__satellite {
+    --sat-size: 38px;
+  }
+
+  .ring--three .ring__satellite {
+    --sat-size: 36px;
+  }
+
+  .scene-label {
+    right: 4%;
+    bottom: 8%;
+    font-size: 0.58rem;
+    transform: translateZ(30px);
   }
 }
 
@@ -1389,13 +1605,22 @@ h3 {
   .stars,
   .comet,
   .ring,
-  .ring__planet,
+  .ring__satellite,
   .planet,
-  .planet__surface,
+  .planet__body,
   .stack__track,
   .cosmos__nebula,
   .contact-card__orbit {
     animation: none !important;
+  }
+
+  /* Static orbits keep the tilted composition and upright language names. */
+  .ring {
+    transform: rotateX(68deg) !important;
+  }
+
+  .ring__satellite {
+    transform: rotateX(-68deg) !important;
   }
 
   .comet {
@@ -1408,7 +1633,10 @@ h3 {
   }
 
   .project:hover,
-  .project:focus-within {
+  .project:focus-within,
+  .btn:hover,
+  .nav-cta:hover,
+  .project__link:hover .icon {
     transform: none;
   }
 
