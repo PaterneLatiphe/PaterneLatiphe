@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://paternelatiphe.github.io/PaterneLatiphe/sitemap.xml
