@@ -122,6 +122,19 @@ a {
   transform: translateY(0);
 }
 
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--violet), var(--gold));
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left center;
+  pointer-events: none;
+}
+
 /* --------------------------------------------------------------------------
    Cosmic background
    -------------------------------------------------------------------------- */
@@ -149,7 +162,38 @@ a {
     rgba(232, 200, 138, 0.045) 59%,
     transparent 70%
   );
-  transform: rotate(-8deg);
+  transform: translate3d(0, var(--sky-shift, 0px), 0) rotate(-8deg);
+}
+
+.cosmos__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cosmos__nebula {
+  position: absolute;
+  width: min(70vw, 860px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(44px);
+  will-change: transform;
+}
+
+.cosmos__nebula--violet {
+  top: -24%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(109, 91, 208, 0.22), transparent 66%);
+  animation: nebula-a 42s ease-in-out infinite alternate;
+}
+
+.cosmos__nebula--cyan {
+  right: -16%;
+  bottom: -28%;
+  background: radial-gradient(circle, rgba(127, 216, 232, 0.14), transparent 66%);
+  animation: nebula-b 54s ease-in-out infinite alternate;
 }
 
 .stars {
@@ -203,15 +247,24 @@ a {
 .comet--one {
   top: 18%;
   left: -12%;
-  animation: comet 14s linear infinite;
+  animation: comet 12s linear infinite;
 }
 
 .comet--two {
   top: 68%;
   left: -18%;
   width: 150px;
-  animation: comet 21s linear infinite 7s;
+  animation: comet 17s linear infinite 5s;
   opacity: 0.3;
+}
+
+.comet--three {
+  top: 42%;
+  left: -10%;
+  width: 190px;
+  opacity: 0.22;
+  background: linear-gradient(90deg, transparent, rgba(127, 216, 232, 0.55), transparent);
+  animation: comet 26s linear infinite 12s;
 }
 
 .grain {
@@ -541,6 +594,8 @@ h3 {
   margin-inline: auto;
   perspective: 1100px;
   transform-style: preserve-3d;
+  transform: rotateY(var(--px, 0deg)) rotateX(var(--py, 0deg));
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .orbit-scene__halo {
@@ -1025,6 +1080,7 @@ h3 {
   border: 1px solid rgba(232, 200, 138, 0.12);
   border-radius: 50%;
   transform: translateX(-50%);
+  animation: halo-pulse 9s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -1080,8 +1136,20 @@ h3 {
    -------------------------------------------------------------------------- */
 
 .reveal {
-  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  animation-delay: var(--delay, 0ms);
+  opacity: 1;
+}
+
+.has-js .reveal {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+}
+
+.has-js .reveal.in-view {
+  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay, 0ms) forwards;
+}
+
+.is-revealed {
+  opacity: 1;
 }
 
 /* --------------------------------------------------------------------------
@@ -1091,6 +1159,21 @@ h3 {
 @keyframes drift {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(14px, -18px, 0); }
+}
+
+@keyframes nebula-a {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); opacity: 0.75; }
+  to { transform: translate3d(8%, 6%, 0) scale(1.16); opacity: 1; }
+}
+
+@keyframes nebula-b {
+  from { transform: translate3d(4%, 3%, 0) scale(1.1); opacity: 0.65; }
+  to { transform: translate3d(-7%, -5%, 0) scale(0.95); opacity: 1; }
+}
+
+@keyframes halo-pulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.85; transform: translateX(-50%) scale(1.08); }
 }
 
 @keyframes comet {
@@ -1240,7 +1323,9 @@ h3 {
   .comet,
   .ring,
   .planet,
-  .stack__track {
+  .stack__track,
+  .cosmos__nebula,
+  .contact-card__orbit {
     animation: none !important;
   }
 
@@ -1248,13 +1333,20 @@ h3 {
     display: none;
   }
 
+  .orbit-scene {
+    transform: none !important;
+    transition: none !important;
+  }
+
   .project:hover,
   .project:focus-within {
     transform: none;
   }
 
-  .reveal {
+  .reveal,
+  .has-js .reveal {
     opacity: 1 !important;
     transform: none !important;
+    animation: none !important;
   }
 }

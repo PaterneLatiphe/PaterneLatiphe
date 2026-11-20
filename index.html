@@ -83,6 +83,7 @@
   <script defer src="assets/js/main.js"></script>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
 
   <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -99,11 +100,15 @@
   </svg>
 
   <div class="cosmos" aria-hidden="true">
+    <div class="cosmos__nebula cosmos__nebula--violet"></div>
+    <div class="cosmos__nebula cosmos__nebula--cyan"></div>
     <div class="cosmos__band"></div>
+    <canvas class="cosmos__canvas" id="particle-field"></canvas>
     <div class="stars stars--far"></div>
     <div class="stars stars--near"></div>
     <div class="comet comet--one"></div>
     <div class="comet comet--two"></div>
+    <div class="comet comet--three"></div>
     <div class="grain"></div>
   </div>
 
@@ -166,7 +171,7 @@
           <p>Connu sur GitHub sous le nom <strong>PaterneLatiphe</strong>, j’enseigne la philosophie à Ouagadougou et je développe des applications desktop et web. Passer de la philosophie au code m’a donné une exigence double : <strong>une logique qui tient debout, un usage qui tient dans la vraie vie.</strong></p>
           <p>J’aime les contextes où l’on ne peut pas supposer Internet — un poste Windows, une école, un bureau, un téléphone en révision. C’est là que mes outils gardent leur lumière. Je préfère les trajectoires sobres aux effets spectaculaires : un bon outil guide, il n’éblouit pas.</p>
         </div>
-        <figure class="quote-card reveal" style="--delay: 120ms">
+        <figure class="quote-card tilt-card reveal" style="--delay: 120ms">
           <blockquote>Un petit chemin fiable vaut mieux qu’une autoroute qui s’arrête au premier tunnel.</blockquote>
           <figcaption>SIRANIN · « petit chemin » en dioula</figcaption>
         </figure>
@@ -285,7 +290,7 @@
     </section>
 
     <section id="contact" class="container section" aria-labelledby="contact-title">
-      <div class="contact-card reveal">
+      <div class="contact-card tilt-card reveal">
         <div class="contact-card__orbit" aria-hidden="true"></div>
         <p class="kicker" style="justify-content:center">05 — Contact</p>
         <h2 id="contact-title">Parlons de votre prochain petit chemin.</h2>
