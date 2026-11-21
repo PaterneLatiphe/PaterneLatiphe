@@ -870,54 +870,6 @@ h3 {
   pointer-events: none;
 }
 
-/* Equatorial ring: the name is a row of beads on the planet's ring, not a
-   label painted on the sphere. The whole ring turns with the globe; each
-   letter owns one orbit position, upright on the near arc and dimmed on the
-   far arc, exactly like an element of a planetary ring. */
-.planet__belt {
-  position: absolute;
-  inset: 30%;
-  transform-style: preserve-3d;
-  animation: belt-spin 18s linear infinite;
-  pointer-events: none;
-}
-
-.planet__belt-track {
-  position: absolute;
-  inset: 0;
-  border: 7px solid rgba(7, 11, 20, 0.76);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 1px rgba(232, 200, 138, 0.16),
-    inset 0 0 12px rgba(0, 0, 0, 0.85),
-    0 0 18px -8px rgba(232, 200, 138, 0.28);
-}
-
-.planet__belt-letter {
-  --angle: calc(var(--i) * 18deg);
-  position: absolute;
-  inset: 0;
-  transform: rotateZ(var(--angle));
-  transform-style: preserve-3d;
-  animation: belt-fade 18s linear infinite;
-  animation-delay: calc(var(--i) * -0.9s);
-}
-
-.planet__belt-letter::before {
-  content: attr(data-letter);
-  position: absolute;
-  bottom: -0.2em;
-  left: 50%;
-  transform: translateX(-50%) scaleY(2.6);
-  color: var(--gold);
-  font-family: var(--display);
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
-  backface-visibility: visible;
-}
-
 .scene-label {
   position: absolute;
   right: 2%;
@@ -1447,19 +1399,6 @@ h3 {
   to { transform: rotateY(360deg); }
 }
 
-/* The ring shares the globe's rhythm and direction: one turn every 18s. */
-@keyframes belt-spin {
-  from { transform: rotateX(68deg) rotateZ(0deg); }
-  to { transform: rotateX(68deg) rotateZ(360deg); }
-}
-
-/* A letter is bright on the near arc, dim on the far arc. */
-@keyframes belt-fade {
-  0%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0.55; }
-  50% { opacity: 0.22; }
-}
-
 @keyframes float {
   0%, 100% { transform: translate3d(0, -6px, 40px); }
   50% { transform: translate3d(0, 6px, 40px); }
@@ -1643,8 +1582,6 @@ h3 {
   .ring__satellite,
   .planet,
   .planet__body,
-  .planet__belt,
-  .planet__belt-letter,
   .stack__track,
   .cosmos__nebula,
   .contact-card__orbit {
@@ -1658,11 +1595,6 @@ h3 {
 
   .ring__satellite {
     transform: rotateX(-68deg) !important;
-  }
-
-  /* Static ring keeps its tilt and every letter on its own orbit position. */
-  .planet__belt {
-    transform: rotateX(68deg) !important;
   }
 
   .comet {

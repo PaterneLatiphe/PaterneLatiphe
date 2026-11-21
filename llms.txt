@@ -1,6 +1,6 @@
 # Relwende Paterne Latiphe KABORE — PaterneLatiphe
 
-> Prof de philosophie et développeur à Ouagadougou, Burkina Faso. Il fait des applications simples, testées, qui marchent sans Internet. Portfolio : https://paternelatiphe.github.io/PaterneLatiphe/
+> Prof de philosophie et développeur à Ouagadougou, Burkina Faso. Petits chemins de lumière, en ligne comme hors ligne : desktop, web et IA. Portfolio : https://paternelatiphe.github.io/PaterneLatiphe/
 
 URL canonique : https://paternelatiphe.github.io/PaterneLatiphe/
 Langue : français (fr-FR)
@@ -18,7 +18,7 @@ Langue : français (fr-FR)
 
 ## Résumé
 
-Relwende Paterne Latiphe KABORE, dit PaterneLatiphe, enseigne la philosophie le jour et développe le soir. Il travaille sur des outils pour les écoles, les bureaux et les postes Windows sans connexion fiable. Il observe d’abord l’usage, puis il écrit, teste et documente. SIRANIN veut dire « petit chemin » en dioula.
+Relwende Paterne Latiphe KABORE, dit PaterneLatiphe, enseigne la philosophie le jour et développe le soir. La philosophie comme boussole, le code comme outil : il conçoit des applications desktop, web et IA, simples et testées, en ligne comme hors ligne. Cinq projets, une même exigence. Il observe d’abord l’usage, puis il trace, vérifie et laisse une trace. SIRANIN veut dire « petit chemin » en dioula.
 
 ## Compétences
 
