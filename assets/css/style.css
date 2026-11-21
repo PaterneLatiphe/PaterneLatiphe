@@ -870,30 +870,52 @@ h3 {
   pointer-events: none;
 }
 
-/* Curved wordmark: the SVG sits inside .planet__body, so path and surface share
-   the same rotating 3D frame — the name rides the globe instead of floating over it. */
-.planet__label {
+/* Equatorial ring: the name is a row of beads on the planet's ring, not a
+   label painted on the sphere. The whole ring turns with the globe; each
+   letter owns one orbit position, upright on the near arc and dimmed on the
+   far arc, exactly like an element of a planetary ring. */
+.planet__belt {
   position: absolute;
-  inset: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  transform: translateZ(40px);
-  backface-visibility: hidden;
+  inset: 30%;
+  transform-style: preserve-3d;
+  animation: belt-spin 18s linear infinite;
   pointer-events: none;
 }
 
-.planet__label text {
-  fill: rgba(232, 200, 138, 0.92);
+.planet__belt-track {
+  position: absolute;
+  inset: 0;
+  border: 7px solid rgba(7, 11, 20, 0.76);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(232, 200, 138, 0.16),
+    inset 0 0 12px rgba(0, 0, 0, 0.85),
+    0 0 18px -8px rgba(232, 200, 138, 0.28);
+}
+
+.planet__belt-letter {
+  --angle: calc(var(--i) * 18deg);
+  position: absolute;
+  inset: 0;
+  transform: rotateZ(var(--angle));
+  transform-style: preserve-3d;
+  animation: belt-fade 18s linear infinite;
+  animation-delay: calc(var(--i) * -0.9s);
+}
+
+.planet__belt-letter::before {
+  content: attr(data-letter);
+  position: absolute;
+  bottom: -0.2em;
+  left: 50%;
+  transform: translateX(-50%) scaleY(2.6);
+  color: var(--gold);
   font-family: var(--display);
-  font-size: 15px;
-  letter-spacing: 0.01em;
-  stroke: rgba(4, 7, 14, 0.72);
-  stroke-width: 1.2px;
-  paint-order: stroke fill;
-  /* Etched into the surface: dark groove below, a thin catch-light above. */
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(255, 245, 220, 0.1);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95);
+  backface-visibility: visible;
 }
 
 .scene-label {
@@ -1419,10 +1441,23 @@ h3 {
   to { transform: rotateZ(-360deg) rotateX(-68deg); }
 }
 
-/* One transform-driven turn for surface + curved wordmark, instead of a background-position repaint. */
+/* One transform-driven turn for the surface, instead of a background-position repaint. */
 @keyframes globe-spin {
   from { transform: rotateY(0deg); }
   to { transform: rotateY(360deg); }
+}
+
+/* The ring shares the globe's rhythm and direction: one turn every 18s. */
+@keyframes belt-spin {
+  from { transform: rotateX(68deg) rotateZ(0deg); }
+  to { transform: rotateX(68deg) rotateZ(360deg); }
+}
+
+/* A letter is bright on the near arc, dim on the far arc. */
+@keyframes belt-fade {
+  0%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0.55; }
+  50% { opacity: 0.22; }
 }
 
 @keyframes float {
@@ -1608,6 +1643,8 @@ h3 {
   .ring__satellite,
   .planet,
   .planet__body,
+  .planet__belt,
+  .planet__belt-letter,
   .stack__track,
   .cosmos__nebula,
   .contact-card__orbit {
@@ -1621,6 +1658,11 @@ h3 {
 
   .ring__satellite {
     transform: rotateX(-68deg) !important;
+  }
+
+  /* Static ring keeps its tilt and every letter on its own orbit position. */
+  .planet__belt {
+    transform: rotateX(68deg) !important;
   }
 
   .comet {
