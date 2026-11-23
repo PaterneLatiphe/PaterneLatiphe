@@ -30,7 +30,7 @@ J'aime les contextes où l'on ne peut pas supposer Internet — un poste Windows
 
 ---
 
-## Cinq projets, une même exigence.
+## Six projets, une même exigence.
 
 Du logiciel métier qui fonctionne sans réseau à l'assistant IA en ligne : chaque projet est une réponse à un usage concret. Les dépôts privés sont présentés sans lien public ; une démo peut être organisée sur demande.
 
@@ -38,6 +38,7 @@ Du logiciel métier qui fonctionne sans réseau à l'assistant IA en ligne : cha
 | --- | --- | --- |
 | **ACSF Desktop** | Suivi des personnes accompagnées par ACSF-AFRIQUE SARL : dossiers, agenda à deux origines de rendez-vous, catalogue d'offres et rapport formel exportable en Excel. Electron, React, TypeScript, SQLite. | Privé · [demander une démo](mailto:kaborepaterne26@gmail.com?subject=Demo%20ACSF%20Desktop) |
 | **SIRANIN** | Gestion scolaire hors ligne pour un établissement privé du Burkina Faso : scolarité, notes et bulletins, caisse multi-guichets, recouvrement, paie SYSCOHADA. 82/82 tests. | Privé · [demander une démo](mailto:kaborepaterne26@gmail.com?subject=Demo%20SIRANIN) |
+| **KLink** | Réseau social agricole en PWA : fil d'actualité, marché, groupes, messagerie, alertes météo et prix. React, Vite, Tailwind, Cloudflare Workers et D1, messages chiffrés de bout en bout. 282 tests. | Privé · [demander une démo](mailto:kaborepaterne26@gmail.com?subject=Demo%20KLink) |
 | **ProfIA BF** | PWA de révision pour le BEPC et le BAC : leçons, flashcards, cartes mentales, quiz, tableau de bord, reconnaissance vocale et assistant IA via Groq. | [Démo en ligne](https://mon-prof-five.vercel.app) |
 | **BiblioFaso** | Une voie à peine ouverte : README initial et workflow GitHub Actions qui construit un APK. | [Voir le dépôt](https://github.com/PaterneLatiphe/BiblioFaso) |
 | **Snake-Evolved** | Un Snake simple, dépôt public d'exercice et de loisir. Pas de produit : juste une petite orbite de code pour garder la main. | [Voir le dépôt](https://github.com/PaterneLatiphe/Snake-Evolved) |
@@ -62,6 +63,16 @@ Suivre les personnes accompagnées par **ACSF-AFRIQUE SARL** sans dépendre du r
 - Paie SYSCOHADA : CNSS, AMU, IUTS, FSP, TPA.
 - Archivage et continuité de service sans connexion.
 - Vérification : **82 tests sur 82** et simulation de **2 080 élèves sur 52 classes**.
+
+### KLink
+
+Un réseau social agricole en **PWA**, pensé d'abord pour un téléphone d'entrée de gamme et une connexion incertaine.
+
+- Fil d'actualité, récits, groupes et modération.
+- Marché, prix relevés, alertes météo et calendrier saisonnier.
+- Messagerie directe et de groupe, pièces jointes et notes vocales, chiffrées de bout en bout.
+- React, Vite et Tailwind côté écran ; Cloudflare Workers et D1 côté serveur.
+- Vérification : **282 tests sur 282**, build et lint verts, Lighthouse 1,00 sur les trois axes.
 
 ### ProfIA BF
 

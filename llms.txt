@@ -15,19 +15,21 @@ Langue : français (fr-FR)
 - E-mail public : kaborepaterne26@gmail.com
 - Profil GitHub : https://github.com/PaterneLatiphe
 - Dépôt source du portfolio : https://github.com/PaterneLatiphe/PaterneLatiphe
+- Contributions GitHub : 262 contributions publiques depuis décembre 2023 (les contributions privées ne sont pas comptées)
 
 ## Résumé
 
-Relwende Paterne Latiphe KABORE, dit PaterneLatiphe, enseigne la philosophie le jour et développe le soir. La philosophie comme boussole, le code comme outil : il conçoit des applications desktop, web et IA, simples et testées, en ligne comme hors ligne. Cinq projets, une même exigence. Il observe d’abord l’usage, puis il trace, vérifie et laisse une trace. SIRANIN veut dire « petit chemin » en dioula.
+Relwende Paterne Latiphe KABORE, dit PaterneLatiphe, enseigne la philosophie le jour et développe le soir. La philosophie comme boussole, le code comme outil : il conçoit des applications desktop, web et IA, simples et testées, en ligne comme hors ligne. Six projets, une même exigence. Il observe d’abord l’usage, puis il trace, vérifie et laisse une trace. SIRANIN veut dire « petit chemin » en dioula.
 
 ## Compétences
 
-C#, JavaScript, TypeScript, PHP, Java, C++, Python, Electron, React, Vite, Tailwind CSS, SQL et SQLite embarqué, AG Grid, ExcelJS, exports Excel, PWA, API Groq, reconnaissance vocale, HTML/CSS, Git et GitHub, tests, documentation, accessibilité, VS Code et Visual Studio.
+C#, JavaScript, TypeScript, PHP, Java, C++, Python, Electron, React, Vite, Tailwind CSS, SQL et SQLite embarqué, Cloudflare Workers et D1, AG Grid, ExcelJS, exports Excel, PWA, API Groq, reconnaissance vocale, chiffrement de bout en bout, HTML/CSS, Git et GitHub, tests, documentation, accessibilité, VS Code et Visual Studio.
 
 ## Projets
 
 - ACSF Desktop : logiciel de gestion pour le suivi des personnes accompagnées par ACSF-AFRIQUE SARL (dossiers, agenda à deux origines de rendez-vous, catalogue d’offres, rapports exportables en Excel). Electron, React, TypeScript, AG Grid et SQLite embarqué. Dépôt privé ; démo sur demande à kaborepaterne26@gmail.com.
 - SIRANIN : logiciel de gestion scolaire hors ligne pour un établissement privé du Burkina Faso (scolarité, notes et bulletins, caisse multi-guichets, recouvrement, paie SYSCOHADA). 82/82 tests et simulation de 2 080 élèves sur 52 classes. Dépôt privé ; démo sur demande.
+- KLink : réseau social agricole en PWA (fil d’actualité, récits, marché, groupes, messagerie, alertes météo et prix), pensé pour un téléphone d’entrée de gamme et une connexion incertaine. React, Vite, Tailwind, Cloudflare Workers et D1, messages chiffrés de bout en bout. 282/282 tests, Lighthouse 1,00. Dépôt privé ; démo sur demande.
 - ProfIA BF (MonProf) : PWA de révision pour le BEPC et le BAC avec leçons, flashcards, cartes mentales, quiz, tableau de bord et assistant IA (API Groq, reconnaissance vocale). Démo : https://mon-prof-five.vercel.app
 - BiblioFaso : amorce de projet public, README initial et workflow GitHub Actions de construction d’un APK ; périmètre fonctionnel à préciser. https://github.com/PaterneLatiphe/BiblioFaso
 - Snake-Evolved : jeu Snake simple, projet public de loisir. https://github.com/PaterneLatiphe/Snake-Evolved
